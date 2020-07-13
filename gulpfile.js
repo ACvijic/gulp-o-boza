@@ -27,13 +27,13 @@ function styles() {
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
         // autoprefix for cross browser compatibility
         .pipe(autoprefixer())
+        .pipe(gulp.dest('src/assets/css'))
         // minify
         .pipe(csso())
         // rename to .min.css
         .pipe(rename({
             suffix: '.min'
         }))
-        // where to save
         .pipe(gulp.dest('src/assets/css'))
         // stream changes to all browsers
         .pipe(browserSync.stream())
