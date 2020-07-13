@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+# compiled files
+src/*.html
+src/assets/css/*.css
+!src/assets/css/vendor/*.css
+src/assets/js/*.min.js
+!src/assets/js/vendor/*.min.js
