@@ -3,7 +3,7 @@ const nunjucksRender = require('gulp-nunjucks-render');
 const sass = require('gulp-sass'); 
 const autoprefixer = require('gulp-autoprefixer');
 const csso = require('gulp-csso');
-const minify = require('gulp-minify');
+var uglify = require('gulp-uglify');
 const webp = require('gulp-webp');
 const del = require('del');
 const browserSync = require('browser-sync').create();
@@ -40,12 +40,12 @@ function styles() {
 }
 
 function scripts() {
-    return gulp.src('src/assets/js/*.js')
+    return gulp.src(['src/assets/js/*.js', '!src/assets/js/*.min.js'])
         // minify
-        .pipe(minify({
-            ext: {
-                min: '.min.js'
-            }
+        .pipe(uglify())
+        // rename to .min.css
+        .pipe(rename({
+            suffix: '.min'
         }))
         // output
         .pipe(gulp.dest('src/assets/js'))
